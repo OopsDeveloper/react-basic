@@ -1,4 +1,5 @@
-*React
+*React란
+컴포넌트들의 집합체
 데이터를 State (내부상태), Props (외부로 부터 전달받은 상태) 나타내는 render가 있다.
 상태가 변경될때마다 re-render 된다.
 실제로 변경된 부분만 화면에 업데이트 된다.
@@ -48,3 +49,48 @@ yarn create react-app basic
     "description": "Adding className"
   }
 }
+
+*컴포넌트 만들어 나갈때
+공통적인 데이터는 필요하고 제일 근접한 부모 컴포넌트에 두고 
+개별적으로 필요한 stats가 있다면 props로 전달
+
+*useEffect
+React에서 부수 효과(side effects) 를 처리할 때 사용하는 훅(생성,업데이트,정리)
+1.컴포넌트가 처음 마운트될 때 실행 (생성 시)
+→ 예: API 호출, 초기 데이터 설정, 이벤트 리스너 등록 등
+2.컴포넌트가 특정 값이 변경될 때 실행 (업데이트 시)
+→ 예: props나 state 값이 바뀔 때 효과를 적용해야 할 경우
+3.컴포넌트가 언마운트될 때 실행 (정리 작업 필요 시)
+→ 예: 이벤트 리스너 제거, 타이머 정리, WebSocket 연결 해제 등
+
+🛠 주요 사용 패턴
+1️⃣ 처음 한 번만 실행 (마운트 시)
+useEffect(() => {
+  console.log("컴포넌트가 처음 마운트됨!");
+}, []); // 빈 배열이면 한 번만 실행
+
+2️⃣ 특정 값이 변경될 때 실행
+useEffect(() => {
+  console.log(`count 값이 변경됨: ${count}`);
+}, [count]); // count가 바뀔 때마다 실행
+
+3️⃣ 정리(clean-up) 작업 필요할 때
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("1초마다 실행");
+  }, 1000);
+
+  return () => {
+    clearInterval(timer); // 컴포넌트가 사라질 때 정리
+    console.log("타이머 정리됨");
+  };
+}, []);
+🚀 결론
+컴포넌트가 처음 등록될 때 ([]) 실행하고 싶으면 빈 배열을 넣어.
+특정 값이 바뀔 때 실행하고 싶으면 의존성 배열에 값을 넣어.
+언마운트될 때 정리가 필요하면 return 안에 정리 코드를 넣어.
+
+
+*uuid 사용법
+npm install uuid
+import { v4 as uuidv4 } from 'uuid'; 해서 사용

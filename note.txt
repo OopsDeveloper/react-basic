@@ -123,7 +123,39 @@ Context API를 사용할 수 있다.
 *useMemo, useCallback
 컴포넌트 내부에서 무거운 일을 하고 매번 호출되기를 바라지 않는다면 useMemo와 useCallback으로 처리 가능하다.
 
-*리액트 라우터
+*React Router
 npm add react-router-dom
 
 outlet: 원하는 자식루트를 표기 가능
+navigate
+
+*React Query
+React Query는 서버 상태를 관리하기 위한 라이브러리로,
+데이터를 가져오고(fetch), 캐싱하고(cache), 동기화(sync)하며 업데이트(update)하는 기능을 제공한다.
+주로 REST API 또는 GraphQL을 호출하여  데이터를 관리할 때 유용하게 사용된다.
+
+https://tanstack.com/query/v4/docs/react/overview
+
+npm add @tanstack/react-query
+
+동일한 useQuery의 키를 사용하면 여러개의 컴포넌트가 호출되지 않고
+캐싱을 통해서 캐시된 데이터를 쓴다.
+
+v5부터는 객체형식으로 써야된다.
+
+너무 빈번한 네트워크 요청이 된다.
+Devtools 설치
+npm add @tanstack/react-query-devtools
+
+useQuery 사용시 캐시된 데이터는 default가 stale(오래된)이다.
+stale은 계속 리패치되서 네트워크 통신한다.
+
+refetchOnMount
+refetchOnWindowFocus
+refetchOnReconnect
+refetchInterval
+
+staleTime을 5분(1000 * 60 * 5) 정도 설정
+=> 백앤드에서 빈번히 데이터가 추가되는지 안되는지 확인하고 설정!
+
+새로운 데이터가 추가됬을때는 캐시를 invalidate하게 만들어야됨.

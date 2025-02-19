@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import useProducts from '../hooks/use-products';
+import { useQuery } from '@tanstack/react-query';
 
-export default function Products() {
+export default function QProducts() {
     const [checked, setChecked] = useState(false);
-    const [loading, error, products] = useProducts({ salesOnly: checked });
+    const { 
+        isLoading, 
+        error, 
+        data: products, 
+    } = useQuery({
+        queryKey: ['products', checked], 
+        queryFn: async () => {
+            console.log('fetching...');
+            await new Promise((resolve) => setTimeout(resolve, 2000)); // ⏳ 2초 딜레이 추가
+            return fetch(`/data/${checked ? 'sale_' : ''}products.json`).then((res) => res.json());
+        },
+        staleTime: 1000 * 60 * 5,
+    });
+
+    // const [loading, error, products] = useProducts({ salesOnly: checked });
     const handleChange = () => setChecked((prev) => !prev);
 
-    if(loading) return <p>Loading...</p>;
+    if(isLoading) return <p>Loading...</p>;
     
     if(error) return <p>{error}</p>
     

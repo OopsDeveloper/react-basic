@@ -1,6 +1,6 @@
 import './App.css';
-import Avartar from './components/Avartar';
-import Profile from './components/Profile';
+import Avartar from '../components/Avartar';
+import Profile from '../components/Profile';
 
 function AppProfile() {
   const handleClick = (event) => {

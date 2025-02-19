@@ -123,3 +123,7 @@ Context API를 사용할 수 있다.
 *useMemo, useCallback
 컴포넌트 내부에서 무거운 일을 하고 매번 호출되기를 바라지 않는다면 useMemo와 useCallback으로 처리 가능하다.
 
+*리액트 라우터
+npm add react-router-dom
+
+outlet: 원하는 자식루트를 표기 가능

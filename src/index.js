@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import App3 from './hooks/useRef/App3';
+import App from './hooks/useContext/App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App3 />
+    <App />
   </React.StrictMode>
 );
 

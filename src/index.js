@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import App2 from './hooks/useMemo/App2';
+import App2 from './hooks/useCallback/App2';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
